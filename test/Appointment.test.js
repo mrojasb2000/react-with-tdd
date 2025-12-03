@@ -20,4 +20,12 @@ describe("Appointment", () => {
 
     expect(document.body.textContent).toContain("Ashley");
   });
+
+  it("renders another customer first name", () => {
+    const customer = { firstName: "Jordan" };
+
+    render(<Appointment customer={customer} />);
+
+    expect(document.body.textContent).toContain("Jordan");
+  });
 });
