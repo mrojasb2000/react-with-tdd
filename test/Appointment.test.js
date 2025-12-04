@@ -54,4 +54,19 @@ describe("AppointmentsDayView", () => {
 
     expect(listElement).not.toBeNull();
   });
+
+  it("renders an li for each appointment", () => {
+    const today = new Date();
+
+    const twoAppointments = [
+      { startAt: today.setHours(12, 0) },
+      { startAt: today.setHours(13, 0) },
+    ];
+
+    render(<AppointmentsDayView appointments={twoAppointments} />);
+
+    const listChildren = document.querySelectorAll("ol > li");
+
+    expect(listChildren).toHaveLength(2);
+  });
 });
