@@ -1,12 +1,20 @@
 import React from "react";
 
+const appointmentTimeOfDay = (startsAt) => {
+  // destructuring the hours and minutes from the arrayOk
+  const [h, m] = new Date(startsAt).toTimeString().split(":");
+  return `${h}:${m}`;
+};
+
 export const Appointment = ({ customer }) => <div>{customer.firstName}</div>;
 
 export const AppointmentsDayView = ({ appointments }) => (
   <div id="appointmentsDayView">
     <ol>
-      {appointments.map(() => (
-        <li />
+      {appointments.map((appointment) => (
+        <li key={appointment.startAt}>
+          {appointmentTimeOfDay(appointment.startAt)}
+        </li>
       ))}
     </ol>
   </div>
