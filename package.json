@@ -1,29 +1,36 @@
 {
   "name": "appointments",
   "version": "1.0.0",
-  "description": "appointments react project with TDD",
-  "license": "ISC",
-  "author": "Mauricio Rojas",
-  "type": "commonjs",
+  "description": "Appointments system",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll"
+    "build": "webpack",
+    "test": "jest"
   },
+  "repository": {
+    "type": "git",
+    "url": "example.com"
+  },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.28.5",
-    "@babel/preset-env": "^7.28.5",
-    "@babel/preset-react": "^7.28.5",
-    "babel-loader": "^10.0.0",
-    "jest": "^30.2.0",
-    "jest-environment-jsdom": "^30.2.0",
-    "webpack": "^5.103.0",
-    "webpack-cli": "^6.0.1"
+    "@babel/plugin-transform-runtime": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "@babel/preset-react": "^7.18.6",
+    "@faker-js/faker": "^7.3.0",
+    "babel-loader": "^8.2.5",
+    "jest": "^28.1.1",
+    "jest-environment-jsdom": "^28.1.3",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.4",
-    "@testing-library/react": "^16.3.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "@babel/runtime": "^7.18.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "prettier": {
+    "printWidth": 54
   },
   "jest": {
     "testEnvironment": "jsdom",
