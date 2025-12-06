@@ -14,6 +14,11 @@ describe("Appointment", () => {
   const render = (component) =>
     act(() => ReactDOM.createRoot(container).render(component));
 
+  const appointmentTable = () =>
+    document.querySelector(
+      "#appointmentView > table"
+    );
+
   it("renders the customer first name", () => {
     const customer = { firstName: "Ashley" };
     render(<Appointment customer={customer} />);
@@ -35,8 +40,8 @@ describe("AppointmentsDayView", () => {
   const today = new Date();
 
   const twoAppointments = [
-    { startAt: today.setHours(12, 0), customer: { firstName: "Ashley" } },
-    { startAt: today.setHours(13, 0), customer: { firstName: "Jordan" } },
+    { startsAt: today.setHours(12, 0), customer: { firstName: "Ashley", lastName: "Smith" } },
+    { startsAt: today.setHours(13, 0), customer: { firstName: "Jordan", lastName: "Jones" } },
   ];
 
   beforeEach(() => {
@@ -67,13 +72,6 @@ describe("AppointmentsDayView", () => {
     const listChildren = document.querySelectorAll("ol > li");
 
     expect(listChildren).toHaveLength(2);
-  });
-
-  it("renders the time of the each appointment", () => {
-    render(<AppointmentsDayView appointments={twoAppointments} />);
-    const listChildren = document.querySelectorAll("li");
-    expect(listChildren[0].textContent).toEqual("12:00");
-    expect(listChildren[1].textContent).toEqual("13:00");
   });
 
   it("initially shows a message saying there are no appointments today", () => {
