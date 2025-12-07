@@ -1,6 +1,6 @@
 import React, {act}  from "react";
 import ReactDOM from "react-dom/client";
-import {initializeReactContainer, container} from "./reactTestExtensions"
+import {initializeReactContainer, container, render} from "./reactTestExtensions"
 import {
   Appointment,
   AppointmentsDayView,
@@ -16,11 +16,6 @@ describe("Appointment", () => {
   beforeEach(() => {
     initializeReactContainer();
   });
-
-  const render = (component) =>
-    act(() =>
-      ReactDOM.createRoot(container).render(component)
-    );
 
   const appointmentTable = () =>
     document.querySelector(
@@ -190,11 +185,6 @@ describe("AppointmentsDayView", () => {
   beforeEach(() => {
     initializeReactContainer();
   });
-
-  const render = (component) =>
-    act(() =>
-      ReactDOM.createRoot(container).render(component)
-    );
 
   it("renders a div with the right id", () => {
     render(<AppointmentsDayView appointments={[]} />);
