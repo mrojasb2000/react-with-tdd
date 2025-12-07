@@ -1,6 +1,5 @@
-import React, {act}  from "react";
-import ReactDOM from "react-dom/client";
-import {initializeReactContainer, container, render} from "./reactTestExtensions"
+import React from "react";
+import {initializeReactContainer, render, click} from "./reactTestExtensions"
 import {
   Appointment,
   AppointmentsDayView,
@@ -270,7 +269,7 @@ describe("AppointmentsDayView", () => {
     );
     const button =
       document.querySelectorAll("button")[1];
-    act(() => button.click());
+      click(button);
     expect(document.body.textContent).toContain(
       "Jordan"
     );
@@ -284,7 +283,7 @@ describe("AppointmentsDayView", () => {
     );
     const button =
       document.querySelectorAll("button")[1];
-    act(() => button.click());
+    click(button);
     expect(button.className).toContain("toggled");
   });
 
