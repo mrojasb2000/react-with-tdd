@@ -1,5 +1,6 @@
 import React, {act}  from "react";
 import ReactDOM from "react-dom/client";
+import {initializeReactContainer, container} from "./reactTestExtensions"
 import {
   Appointment,
   AppointmentsDayView,
@@ -12,11 +13,8 @@ describe("Appointment", () => {
     phoneNumber: "",
   };
 
-  let container;
-
   beforeEach(() => {
-    container = document.createElement("div");
-    document.body.replaceChildren(container);
+    initializeReactContainer();
   });
 
   const render = (component) =>
@@ -189,11 +187,8 @@ describe("AppointmentsDayView", () => {
     },
   ];
 
-  let container;
-
   beforeEach(() => {
-    container = document.createElement("div");
-    document.body.replaceChildren(container);
+    initializeReactContainer();
   });
 
   const render = (component) =>
