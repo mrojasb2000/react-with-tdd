@@ -4,6 +4,7 @@ import {
   Appointment,
   AppointmentsDayView,
 } from "../src/AppointmentsDayView";
+import { toContainText } from "./matchers/toContainText"
 
 describe("Appointment", () => {
   const blankCustomer = {
@@ -297,4 +298,24 @@ describe("AppointmentsDayView", () => {
       document.querySelectorAll("button")[1];
     expect(button.className).not.toContain("toggled");
   });
+});
+
+describe("toContainText matcher", () => {
+    it("returns pass is true when text is found in the given DOM element", () =>{
+        const domElement = {
+            textContent: "text to find"
+        };
+        const result = toContainText(domElement, "text to find");
+
+        expect(result.pass).toBe(true);
+
+    });
+
+    it("return pass is false when the text is not found in the given DOM element", () => {
+        const domElement = { textContent: "" };
+
+        const result = toContainText(domElement, "text to find");
+
+        expect(result.pass).toBe(false);
+    });
 });
