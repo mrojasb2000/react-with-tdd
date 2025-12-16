@@ -1,5 +1,5 @@
 import React from "react";
-import {initializeReactContainer, render, click} from "./reactTestExtensions"
+import {initializeReactContainer, render, click, stripTerminalColor} from "./reactTestExtensions"
 import {
   Appointment,
   AppointmentsDayView,
@@ -317,5 +317,13 @@ describe("toContainText matcher", () => {
         const result = toContainText(domElement, "text to find");
 
         expect(result.pass).toBe(false);
+    });
+
+    it("returns a message that contains the source line if no match", () => {
+        const domElement = { textContent: "" };
+
+        const result = toContainText(domElement, "text to find");
+
+        expect(stripTerminalColor(result.message())).toContain(`expect(element).toContainText("text to find")`);
     });
 });

@@ -11,3 +11,5 @@ export const initializeReactContainer = () => {
 export const render = (component) => act(() => ReactDOM.createRoot(container).render(component));
 
 export const click = (element) => act(() => element.click());
+
+export const stripTerminalColor = (text) => text.replace(/\x1B\[\d+m/g, "")
