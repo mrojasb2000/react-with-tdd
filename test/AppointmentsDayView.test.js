@@ -246,11 +246,7 @@ describe("AppointmentsDayView", () => {
       />
     );
 
-    const buttons =
-      elements("li > button");
-
-    expect(buttons).toHaveLength(2);
-    expect(buttons[0].type).toEqual("button");
+    expect(typesOf(elements("li > *"))).toEqual(["button", "button"]);
   });
 
   it("renders another appointment when selected", () => {
