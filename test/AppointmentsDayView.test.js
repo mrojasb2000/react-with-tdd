@@ -18,7 +18,7 @@ describe("Appointment", () => {
   });
 
   const appointmentTable = () =>
-    document.querySelector(
+    element(
       "#appointmentView > table"
     );
 
@@ -150,7 +150,7 @@ describe("Appointment", () => {
   it("renders an h3 element", () => {
     render(<Appointment customer={blankCustomer} />);
     expect(
-      document.querySelector("h3")
+      element("h3")
     ).not.toBeNull();
   });
 
@@ -163,7 +163,7 @@ describe("Appointment", () => {
         startsAt={timestamp}
       />
     );
-    expect(document.querySelector("h3")).toContainText("Today’s appointment at 09:00");
+    expect(element("h3")).toContainText("Today’s appointment at 09:00");
   });
 });
 
@@ -187,7 +187,7 @@ describe("AppointmentsDayView", () => {
   it("renders a div with the right id", () => {
     render(<AppointmentsDayView appointments={[]} />);
     expect(
-      document.querySelector(
+      element(
         "div#appointmentsDayView"
       )
     ).not.toBeNull();
@@ -195,7 +195,7 @@ describe("AppointmentsDayView", () => {
 
   it("renders an ol element to display appointments", () => {
     render(<AppointmentsDayView appointments={[]} />);
-    const listElement = document.querySelector("ol");
+    const listElement = element("ol");
     expect(listElement).not.toBeNull();
   });
 
