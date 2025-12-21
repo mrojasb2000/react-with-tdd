@@ -218,14 +218,7 @@ describe("AppointmentsDayView", () => {
       />
     );
 
-    const listChildren =
-      elements("li");
-    expect(listChildren[0]).toContainText(
-      "12:00"
-    );
-    expect(listChildren[1]).toContainText(
-      "13:00"
-    );
+    expect(textOf(elements("li"))).toEqual(["12:00", "13:00"]);
   });
 
   it("initially shows a message saying there are no appointments today", () => {
