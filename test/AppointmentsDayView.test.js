@@ -1,5 +1,5 @@
 import React from "react";
-import {initializeReactContainer, render, click, stripTerminalColor} from "./reactTestExtensions"
+import {initializeReactContainer, render, click, element, elements, typesOf, textOf, stripTerminalColor} from "./reactTestExtensions"
 import {
   Appointment,
   AppointmentsDayView,
@@ -207,7 +207,7 @@ describe("AppointmentsDayView", () => {
     );
 
     const listChildren =
-      document.querySelectorAll("ol > li");
+      elements("ol > li");
     expect(listChildren).toHaveLength(2);
   });
 
@@ -219,7 +219,7 @@ describe("AppointmentsDayView", () => {
     );
 
     const listChildren =
-      document.querySelectorAll("li");
+      elements("li");
     expect(listChildren[0]).toContainText(
       "12:00"
     );
@@ -254,7 +254,7 @@ describe("AppointmentsDayView", () => {
     );
 
     const buttons =
-      document.querySelectorAll("li > button");
+      elements("li > button");
 
     expect(buttons).toHaveLength(2);
     expect(buttons[0].type).toEqual("button");
@@ -267,7 +267,7 @@ describe("AppointmentsDayView", () => {
       />
     );
     const button =
-      document.querySelectorAll("button")[1];
+      elements("button")[1];
       click(button);
     expect(document.body).toContainText(
       "Jordan"
@@ -281,7 +281,7 @@ describe("AppointmentsDayView", () => {
       />
     );
     const button =
-      document.querySelectorAll("button")[1];
+      elements("button")[1];
     click(button);
     expect(button.className).toContain("toggled");
   });
@@ -293,7 +293,7 @@ describe("AppointmentsDayView", () => {
       />
     );
     const button =
-      document.querySelectorAll("button")[1];
+      elements("button")[1];
     expect(button.className).not.toContain("toggled");
   });
 });
