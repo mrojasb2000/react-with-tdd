@@ -184,6 +184,8 @@ describe("AppointmentsDayView", () => {
     initializeReactContainer();
   });
 
+  const secondButton = () => elements("button")[1];
+
   it("renders a div with the right id", () => {
     render(<AppointmentsDayView appointments={[]} />);
     expect(
@@ -255,9 +257,7 @@ describe("AppointmentsDayView", () => {
         appointments={twoAppointments}
       />
     );
-    const button =
-      elements("button")[1];
-      click(button);
+    click(secondButton());
     expect(document.body).toContainText(
       "Jordan"
     );
@@ -269,10 +269,8 @@ describe("AppointmentsDayView", () => {
         appointments={twoAppointments}
       />
     );
-    const button =
-      elements("button")[1];
-    click(button);
-    expect(button.className).toContain("toggled");
+    click(secondButton());
+    expect(secondButton().className).toContain("toggled");
   });
 
   it("does not add toggled class if button is not selected", () => {
@@ -281,9 +279,7 @@ describe("AppointmentsDayView", () => {
         appointments={twoAppointments}
       />
     );
-    const button =
-      elements("button")[1];
-    expect(button.className).not.toContain("toggled");
+    expect(secondButton().className).not.toContain("toggled");
   });
 });
 
