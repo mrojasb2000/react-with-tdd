@@ -4,7 +4,7 @@ import {
   Appointment,
   AppointmentsDayView,
 } from "../src/AppointmentsDayView";
-import { toContainText } from "./matchers/toContainText"
+//import { toContainText, toHaveClass } from "./domMatchers";
 
 describe("Appointment", () => {
   const blankCustomer = {
@@ -17,20 +17,20 @@ describe("Appointment", () => {
     initializeReactContainer();
   });
 
-  const appointmentTable = () =>
+  const appointmentsTable = () =>
     element(
       "#appointmentView > table"
     );
 
   it("renders a table", () => {
     render(<Appointment customer={blankCustomer} />);
-    expect(appointmentTable()).not.toBeNull();
+    expect(appointmentsTable()).not.toBeNull();
   });
 
   it("renders the customer first name", () => {
     const customer = { firstName: "Ashley" };
     render(<Appointment customer={customer} />);
-    expect(appointmentTable()).toContainText(
+    expect(appointmentsTable()).toContainText(
       "Ashley"
     );
   });
@@ -38,7 +38,7 @@ describe("Appointment", () => {
   it("renders another customer first name", () => {
     const customer = { firstName: "Jordan" };
     render(<Appointment customer={customer} />);
-    expect(appointmentTable()).toContainText(
+    expect(appointmentsTable()).toContainText(
       "Jordan"
     );
   });
@@ -46,7 +46,7 @@ describe("Appointment", () => {
   it("renders the customer last name", () => {
     const customer = { lastName: "Jones" };
     render(<Appointment customer={customer} />);
-    expect(appointmentTable()).toContainText(
+    expect(appointmentsTable()).toContainText(
       "Jones"
     );
   });
@@ -54,7 +54,7 @@ describe("Appointment", () => {
   it("renders another customer last name", () => {
     const customer = { lastName: "Smith" };
     render(<Appointment customer={customer} />);
-    expect(appointmentTable()).toContainText(
+    expect(appointmentsTable()).toContainText(
       "Smith"
     );
   });
@@ -62,7 +62,7 @@ describe("Appointment", () => {
   it("renders the customer phone number", () => {
     const customer = { phoneNumber: "123456789" };
     render(<Appointment customer={customer} />);
-    expect(appointmentTable()).toContainText(
+    expect(appointmentsTable()).toContainText(
       "123456789"
     );
   });
@@ -70,7 +70,7 @@ describe("Appointment", () => {
   it("renders another customer phone number", () => {
     const customer = { phoneNumber: "234567890" };
     render(<Appointment customer={customer} />);
-    expect(appointmentTable()).toContainText(
+    expect(appointmentsTable()).toContainText(
       "234567890"
     );
   });
@@ -82,7 +82,7 @@ describe("Appointment", () => {
         stylist="Sam"
       />
     );
-    expect(appointmentTable()).toContainText(
+    expect(appointmentsTable()).toContainText(
       "Sam"
     );
   });
@@ -94,7 +94,7 @@ describe("Appointment", () => {
         stylist="Jo"
       />
     );
-    expect(appointmentTable()).toContainText(
+    expect(appointmentsTable()).toContainText(
       "Jo"
     );
   });
@@ -106,7 +106,7 @@ describe("Appointment", () => {
         service="Cut"
       />
     );
-    expect(appointmentTable()).toContainText(
+    expect(appointmentsTable()).toContainText(
       "Cut"
     );
   });
@@ -118,7 +118,7 @@ describe("Appointment", () => {
         service="Blow-dry"
       />
     );
-    expect(appointmentTable()).toContainText(
+    expect(appointmentsTable()).toContainText(
       "Blow-dry"
     );
   });
@@ -130,7 +130,7 @@ describe("Appointment", () => {
         notes="abc"
       />
     );
-    expect(appointmentTable()).toContainText(
+    expect(appointmentsTable()).toContainText(
       "abc"
     );
   });
@@ -142,7 +142,7 @@ describe("Appointment", () => {
         notes="def"
       />
     );
-    expect(appointmentTable()).toContainText(
+    expect(appointmentsTable()).toContainText(
       "def"
     );
   });
@@ -266,7 +266,7 @@ describe("AppointmentsDayView", () => {
       />
     );
     click(secondButton());
-    expect(secondButton().className).toContain("toggled");
+    expect(secondButton()).toHaveClass("toggled");
   });
 
   it("does not add toggled class if button is not selected", () => {
@@ -276,49 +276,7 @@ describe("AppointmentsDayView", () => {
       />
     );
     expect(secondButton().className).not.toContain("toggled");
+    expect(secondButton()).not.toContain("toggled");
   });
 });
 
-describe("toContainText matcher", () => {
-    it("returns pass is true when text is found in the given DOM element", () =>{
-        const domElement = {
-            textContent: "text to find"
-        };
-        const result = toContainText(domElement, "text to find");
-
-        expect(result.pass).toBe(true);
-
-    });
-
-    it("return pass is false when the text is not found in the given DOM element", () => {
-        const domElement = { textContent: "" };
-
-        const result = toContainText(domElement, "text to find");
-
-        expect(result.pass).toBe(false);
-    });
-
-    it("returns a message that contains the source line if no match", () => {
-        const domElement = { textContent: "" };
-
-        const result = toContainText(domElement, "text to find");
-
-        expect(stripTerminalColor(result.message())).toContain(`expect(element).toContainText("text to find")`);
-    });
-
-    it("returns a message that contains the source line if negated match", () => {
-      const domElement = { textContent: "text to find" };
-
-      const result = toContainText(domElement, "text to find");
-
-      expect(stripTerminalColor(result.message())).toContain(`expect(element).not.toContainText("text to find")`);
-    });
-
-    it("returns a message that contains the actual text", () => {
-      const domElement = { textContent: "text to find" };
-
-      const result = toContainText(domElement, "text to find");
-
-      expect(stripTerminalColor(result.message())).toContain(`Actual text: "text to find"`);
-    });
-});

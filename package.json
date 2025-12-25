@@ -6,7 +6,9 @@
   "scripts": {
     "build": "webpack",
     "test": "jest",
-    "cover": "npm test -- --coverage"
+    "cover": "npm test -- --coverage",
+    "format": "prettier --write {src,test}/*",
+    "lint": "eslint {src,test}/**/*"
   },
   "repository": {
     "type": "git",
@@ -40,8 +42,6 @@
     "globals": {
       "IS_REACT_ACT_ENVIRONMENT": true
     },
-    "setupFilesAfterEnv": [
-      "./test/domMatchers.js"
-    ]
+    "setupFilesAfterEnv": ["./test/domMatchers.js"]
   }
 }
