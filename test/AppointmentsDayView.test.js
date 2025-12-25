@@ -197,8 +197,7 @@ describe("AppointmentsDayView", () => {
 
   it("renders an ol element to display appointments", () => {
     render(<AppointmentsDayView appointments={[]} />);
-    const listElement = element("ol");
-    expect(listElement).not.toBeNull();
+    expect(element("ol")).not.toBeNull();
   });
 
   it("renders an li for each appointment", () => {
@@ -207,10 +206,7 @@ describe("AppointmentsDayView", () => {
         appointments={twoAppointments}
       />
     );
-
-    const listChildren =
-      elements("ol > li");
-    expect(listChildren).toHaveLength(2);
+    expect(elements("ol > li")).toHaveLength(2);
   });
 
   it("renders the time of each appointment", () => {
